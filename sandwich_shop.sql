@@ -6,8 +6,9 @@ USE sandwich_shop;
 
 CREATE TABLE products (
 	productid INT PRIMARY KEY AUTO_INCREMENT
-    , product VARCHAR(30) NOT NULL
+    , product VARCHAR(30) NOT NULL 
     , price DECIMAL(5,2)
+    , CONSTRAINT prod_length CHECK (length(product) > 3)
     );
 
 CREATE TABLE sales (
@@ -18,10 +19,10 @@ CREATE TABLE sales (
     
 CREATE TABLE sales_detail (
 	detailid INT PRIMARY KEY AUTO_INCREMENT
-    , productid INT
+    , menu_item INT
     , orderid INT
-    , CONSTRAINT fk1 FOREIGN KEY (productid) REFERENCES products(productid)
-    , CONSTRAINT fk2 FOREIGN KEY (orderid) REFERENCES sales(orderid)
+    , CONSTRAINT peanut_butter FOREIGN KEY (menu_item) REFERENCES products(productid) ON DELETE CASCADE ON UPDATE CASCADE
+    , CONSTRAINT jelly FOREIGN KEY (orderid) REFERENCES sales(orderid)
 );
 
 INSERT INTO products (product, price)
@@ -49,7 +50,7 @@ VALUES
     (NULL)
 ;
 
-INSERT INTO sales_detail (productid, orderid)
+INSERT INTO sales_detail (menu_item, orderid)
 VALUES
 	(1, 1),
     (2, 2),
@@ -62,5 +63,31 @@ VALUES
 SELECT sales.orderid, sales.orderplaced, products.product, products.price 
 FROM sales
 JOIN sales_detail ON sales.orderid = sales_detail.orderid
-JOIN products ON products.productid = sales_detail.productid
+JOIN products ON products.productid = sales_detail.menu_item
 ;
+
+ALTER TABLE products
+ADD CONSTRAINT no_dupes UNIQUE (product);
+
+-- INSERT INTO products (product, price)
+-- VALUES
+-- 	("Roast beef sandwich  ", 14.99)
+--     ;
+    
+-- SELECT last_insert_id(productid) FROM products; 
+
+-- INSERT INTO products (product, price)
+-- VALUES
+-- 	("PBJ with nutella", 4.99)
+--     , ("PBJ", 3.99);
+    
+-- INSERT INTO products (product, price)
+-- VALUES
+--     ("PBJ", 3.99);
+--     
+-- ALTER TABLE products
+-- DROP CONSTRAINT prod_length;
+
+-- ALTER TABLE sales_detail
+-- DROP CONSTRAINT peanut_butter;
+-- DROP TABLE products;
