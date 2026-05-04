@@ -17,6 +17,5 @@ print(city, state, zip)
 print("Mailing address")
 print(first_name, last_name)
 print("P.O. Box " + str(po_box))
-print(city, 
-    state, 
-    zip)
+print(city, state, zip)
+
