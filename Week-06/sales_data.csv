@@ -1,7 +1,3 @@
-Ice Cream Shop Daily Sales Report
-Date: July 14 2025
-Location: Sunnyside Scoops
-
 Flavor,Scoops Sold,Price Per Scoop,Total Revenue
 Vanilla,42,$2.50,$105.00
 Chocolate,38,$2.50,$95.00
@@ -11,10 +7,3 @@ Rocky Road,19,$2.75,$52.25
 Butter Pecan,14,$2.75,$38.50
 Mango Sorbet,22,$3.00,$66.00
 Cookie Dough,35,$3.00,$105.00
-
-Total Scoops Sold: 228
-Total Revenue: $614.50
-Best Seller: Vanilla
-Slowest Seller: Butter Pecan
-
-    
